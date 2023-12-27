@@ -30,3 +30,12 @@
 *.exe
 *.out
 *.app
+
+# ESP-IDF specific files
+managed_components
+esp-idf
+
+# CLion CMake specific files
+build
+cmake-build*
+
