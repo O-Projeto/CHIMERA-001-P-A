@@ -2,7 +2,7 @@
 The Chimera is a prototype tank designed for combat in difficult terrain, including urban areas. It was developed under the leadership of O Projeto. The project was created in response to the need for a "new heavy tank capable of sustained fire and prolonged engagement of enemy forces".
 
 > [!NOTE]
-> The above definition is **satire**, this project has been created with the intent of building and controling a hexapod robot, to be used for trekking/autonomous competitions. No systems and/or robotic designs are/will be used for harm.
+> The above definition is **satire**, this project has been created with the intent of building and controling a hexapod robot, to be used for trekking/autonomous competitions. No systems and/or robotic designs are and/or will be used for harm.
 
 
 
