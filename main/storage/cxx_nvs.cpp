@@ -8,23 +8,23 @@ extern "C" {
 #include "nvs.h"
 }
 
-#include <iostream>
+#include "spdlog/spdlog.h"
 #include "cxx_nvs.hpp"
 
 NVS::Manager::Manager() {
     // Initialize NVS
-    std::cout << "Debug: Initializing NVS\n";
+    spdlog::debug("Attempting to initialize NVS");
     esp_err_t err{nvs_flash_init()};
     if (err == ESP_ERR_NVS_NO_FREE_PAGES || err == ESP_ERR_NVS_NEW_VERSION_FOUND) {
-        std::cout << "Warning: NVS partition was truncated with code " << esp_err_to_name(err) << ", retrying\n";
+        spdlog::warn("NVS partition was truncated with code {}, retrying", esp_err_to_name(err));
         // NVS partition was truncated and needs to be erased
         // Retry nvs_flash_init
         if (const int erase{nvs_flash_erase()}; erase != ESP_OK) {
-            std::cout << "Error: Failed to erase NVS partition with code " << esp_err_to_name(erase) << "\n";
+            spdlog::error("Failed to erase NVS partition with code {}, exiting", esp_err_to_name(erase));
         }
     }
     if (err = nvs_flash_init(); err != ESP_OK) {
-        std::cout << "Error: Failed to initialize NVS, with code " << esp_err_to_name(err) << "\n";
+        spdlog::error("Failed to initialize NVS, with code {}, exiting", esp_err_to_name(err));
     }
-    std::cout << "Debug: NVS Initialized\n";
+    spdlog::debug("NVS Initialized");
 }
