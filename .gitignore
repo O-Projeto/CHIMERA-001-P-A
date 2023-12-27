@@ -38,4 +38,4 @@ esp-idf
 # CLion CMake specific files
 build
 cmake-build*
-
+.idea
