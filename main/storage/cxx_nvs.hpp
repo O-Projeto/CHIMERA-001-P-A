@@ -9,7 +9,6 @@ namespace NVS {
     // NVS Class Wrapper over ESP-IDF C function calls
     class Manager {
     public:
-        // TODO: Estabilish Invariants for NVS initialization
         Manager();
 
         Manager(const Manager& other) = delete;
@@ -20,8 +19,7 @@ namespace NVS {
 
         Manager& operator=(Manager&& other) = delete;
 
-        // TODO: Estabilish NVS de-initialization
-        ~Manager() = default;
+        ~Manager() noexcept;
     };
 }
 
