@@ -28,9 +28,9 @@ NVS::Manager::Manager() {
 
 NVS::Manager::~Manager() noexcept {
     if (const esp_err_t err{nvs_flash_deinit()}; err != ESP_OK) {
-        spdlog::error("Failed to de-initialize NVS, with code {}, retrying", esp_err_to_name(err));
+        spdlog::error("Failed to de-initialize NVS with code {}, retrying", esp_err_to_name(err));
         if (const esp_err_t retry_err{nvs_flash_deinit()}; retry_err != ESP_OK) {
-            spdlog::error("Retry NVS initialization failed, with code {}, exiting", esp_err_to_name(retry_err));
+            spdlog::error("Retry NVS initialization failed with code {}", esp_err_to_name(retry_err));
         }
     }
 }
