@@ -13,16 +13,17 @@ extern "C" {
 #include "cxx_nvs.hpp"
 
 nvs::manager::manager() {
-    esp_err_t err{nvs_flash_init()};
-    if (err == ESP_ERR_NVS_NO_FREE_PAGES || err == ESP_ERR_NVS_NEW_VERSION_FOUND) {
-        if (const int erase{nvs_flash_erase()}; erase != ESP_OK) {
-            throw chimera_exception::exception(erase, esp_err_to_name(erase),
-                                               "Breach of NVS Flash Erase Invariant");
+    if (const esp_err_t err{nvs_flash_init()}; err == ESP_ERR_NVS_NO_FREE_PAGES || err ==
+                                               ESP_ERR_NVS_NEW_VERSION_FOUND) {
+        if (const esp_err_t erase{nvs_flash_erase()}; erase != ESP_OK) {
+            throw chimera_exception::exception(erase, "Breach of NVS Flash Erase Invariant");
         }
-        err = nvs_flash_init();
+        if (const esp_err_t retry{nvs_flash_init()}; retry != ESP_OK) {
+            throw chimera_exception::exception(err, "Breach of NVS Flash Retry Invariant");
+        }
     }
-    if (err != ESP_OK) {
-        throw chimera_exception::exception(err, esp_err_to_name(err), "Breach of NVS Flash Invariant");
+    else if (err != ESP_OK) {
+        throw chimera_exception::exception(err, "Breach of NVS Flash Invariant");
     }
 }
 
