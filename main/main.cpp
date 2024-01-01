@@ -16,7 +16,7 @@
 // https://docs.espressif.com/projects/esp-idf/en/v5.1.2/esp32/api-guides/startup.html
 extern "C" void app_main(void) {
     // Global Logging Level Initialization
-    spdlog::set_level(spdlog::level::debug);
+    spdlog::set_level(spdlog::level::err);
 
     // NVS Driver Initialization Block
     try {
