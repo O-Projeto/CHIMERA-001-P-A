@@ -6,8 +6,8 @@
 
 #include "exception/cxx_chimera_exception.hpp"
 
-chimera_exception::exception::exception(const esp_err_t error, const char* message, const char* reason)
-    : esp_error{error}, esp_message{message}, chimera_reason{reason} {
+chimera_exception::exception::exception(const esp_err_t error, const char* reason)
+    : esp_error{error}, esp_message{esp_err_to_name(error)}, chimera_reason{reason} {
 }
 
 const char* chimera_exception::exception::what() const noexcept {

@@ -18,10 +18,9 @@ namespace chimera_exception {
     public:
         /**
          * @param error ESP-IDF error code.
-         * @param message ESP-IDF error message.
          * @param reason CHIMERA exception message.
          */
-        exception(esp_err_t error, const char* message, const char* reason);
+        exception(esp_err_t error, const char* reason);
 
         /**
          * @return The ESP-IDF error message.
