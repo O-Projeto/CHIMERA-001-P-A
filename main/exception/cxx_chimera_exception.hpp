@@ -18,12 +18,12 @@ namespace chimera_exception {
     public:
         /**
          * @param error ESP-IDF error code.
-         * @param reason CHIMERA exception message.
+         * @param message CHIMERA exception message.
          */
-        exception(esp_err_t error, const char* reason);
+        exception(esp_err_t error, const char* message);
 
         /**
-         * @return The ESP-IDF error message.
+         * @return The ESP-IDF error message extracted from esp_err_t.
          */
         const char* what() const noexcept override;
 
@@ -38,9 +38,8 @@ namespace chimera_exception {
         const char* reason() const noexcept;
 
     private:
-        esp_err_t esp_error{};
-        const char* esp_message;
-        const char* chimera_reason;
+        esp_err_t error{};
+        const char* message;
     };
 
     /**
