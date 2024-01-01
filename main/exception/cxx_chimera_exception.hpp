@@ -12,28 +12,34 @@ extern "C" {
 #include <exception>
 
 namespace chimera_exception {
-
     class exception final : public std::exception {
     public:
         /**
-         * @param error Chimera custom error code.
-         * @param message Detailed error message.
+         * @param error ESP-IDF error code.
+         * @param message ESP-IDF error message.
+         * @param reason CHIMERA exception message.
          */
-        exception(esp_err_t error, const char* message);
+        exception(esp_err_t error, const char* message, const char* reason);
 
         /**
-         * @return A textual representation of the contained error.
+         * @return The ESP-IDF error message.
          */
         const char* what() const noexcept override;
 
         /**
-         * \return The throwed error code.
+         * \return The ESP-IDF error code.
          */
         esp_err_t code() const noexcept;
 
+        /**
+        * \return The CHIMERA detailed message for the exception to be thrown.
+        */
+        const char* reason() const noexcept;
+
     private:
-        esp_err_t error{};
-        const char* message;
+        esp_err_t esp_error{};
+        const char* esp_message;
+        const char* chimera_reason;
     };
 }
 
