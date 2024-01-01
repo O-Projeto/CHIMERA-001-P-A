@@ -1,5 +1,10 @@
 idf_component_register(
-        SRCS "main.cpp" "storage/cxx_nvs.cpp" "storage/cxx_nvs.hpp"
+        SRCS
+        "main.cpp"
+        "storage/cxx_nvs.hpp"
+        "storage/cxx_nvs.cpp"
+        "exception/cxx_chimera_exception.hpp"
+        "exception/cxx_chimera_exception.cpp"
         INCLUDE_DIRS ".")
 
 # Allow all compiler warnings to be displayed

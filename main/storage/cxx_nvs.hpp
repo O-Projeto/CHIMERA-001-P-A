@@ -11,13 +11,13 @@ namespace NVS {
     public:
         Manager();
 
-        Manager(const Manager& other) = delete;
+        Manager(const Manager&other) = delete;
 
-        Manager(Manager&& other) = delete;
+        Manager(Manager&&other) = delete;
 
-        Manager& operator=(const Manager& other) = delete;
+        Manager& operator=(const Manager&other) = delete;
 
-        Manager& operator=(Manager&& other) = delete;
+        Manager& operator=(Manager&&other) = delete;
 
         ~Manager() noexcept;
     };

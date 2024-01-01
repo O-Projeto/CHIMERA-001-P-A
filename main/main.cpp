@@ -3,11 +3,12 @@
 //
 
 #include "storage/cxx_nvs.hpp"
+#include "exception/cxx_chimera_exception.hpp"
 #include "spdlog/spdlog.h"
 
+#include <iostream>
 
 // TODO:
-// - Design Error Handling Subcomponent.
 // - Design Telemetry Subcomponent.
 // - Design Clock Synchronization Subcomponent.
 
@@ -18,7 +19,13 @@ extern "C" void app_main(void) {
     spdlog::set_level(spdlog::level::debug);
 
     // NVS Driver Initialization Block
-    // NOTE: NVS Wrapper Class for the moment DOES NOT apply Error Handling, this will be implemented
-    // after a suitable Error Handling Strategy is defined.
-    NVS::Manager();
+    try {
+        NVS::Manager();
+        // ReSharper thinking that this won't throw..
+        // ReSharper disable once CppDFAUnreachableCode
+    } catch (const chimera_exception::exception&ex) {
+        std::cout <<
+            "code:    [" << ex.code() << "]\n"
+            "what:    [" << ex.what() << "]\n";
+    }
 }

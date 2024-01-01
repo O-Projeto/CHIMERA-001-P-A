@@ -8,6 +8,7 @@ extern "C" {
 #include "nvs.h"
 }
 
+#include "exception/cxx_chimera_exception.hpp"
 #include "spdlog/spdlog.h"
 #include "cxx_nvs.hpp"
 
@@ -21,21 +22,19 @@ NVS::Manager::Manager() {
         // Retry nvs_flash_init
         spdlog::debug("Attempting to erase NVS partition");
         if (const int erase{nvs_flash_erase()}; erase != ESP_OK) {
-            spdlog::error("Failed to erase NVS partition with code {}, exiting", esp_err_to_name(erase));
+            throw chimera_exception::exception(erase, esp_err_to_name(erase));
         }
-        else {
-            spdlog::debug("NVS partition has been erased");
-            spdlog::debug("Attempting to re-initialize NVS after flashing NVS");
-            err = nvs_flash_init();
-        }
+        spdlog::debug("NVS partition has been erased");
+        spdlog::debug("Attempting to re-initialize NVS after flashing NVS");
+        err = nvs_flash_init();
     }
     if (err != ESP_OK) {
-        spdlog::error("Failed to initialize NVS, with code {}, exiting", esp_err_to_name(err));
+        throw chimera_exception::exception(err, esp_err_to_name(err));
     }
     spdlog::debug("NVS Initialized");
 }
 
-NVS::Manager::~Manager() {
+NVS::Manager::~Manager() noexcept {
     spdlog::debug("Attempting to de-initialize NVS");
     if (const esp_err_t err{nvs_flash_deinit()}; err != ESP_OK) {
         spdlog::error("Failed to de-initialize NVS, with code {}, retrying", esp_err_to_name(err));
@@ -43,8 +42,7 @@ NVS::Manager::~Manager() {
             spdlog::error("Retry NVS initialization failed, with code {}, exiting", esp_err_to_name(retry_err));
         }
     }
-    else if (err == ESP_OK) {
+    else {
         spdlog::debug("NVS De-initialized");
     }
 }
-
