@@ -26,7 +26,7 @@ const char* chimera_exception::exception::reason() const noexcept {
 void chimera_exception::print_exception(const exception&ex) noexcept {
     using namespace std;
 
-    std::cout <<
+    std::cerr <<
             "code:     [" << ex.code() << "]\n"
             "what:     [" << ex.what() << "]\n"
             "reason:   [" << ex.reason() << "]\n";
