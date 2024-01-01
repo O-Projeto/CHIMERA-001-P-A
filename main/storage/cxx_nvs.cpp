@@ -12,7 +12,7 @@ extern "C" {
 #include "spdlog/spdlog.h"
 #include "cxx_nvs.hpp"
 
-NVS::Manager::Manager() {
+nvs::manager::manager() {
     esp_err_t err{nvs_flash_init()};
     if (err == ESP_ERR_NVS_NO_FREE_PAGES || err == ESP_ERR_NVS_NEW_VERSION_FOUND) {
         if (const int erase{nvs_flash_erase()}; erase != ESP_OK) {
@@ -26,7 +26,7 @@ NVS::Manager::Manager() {
     }
 }
 
-NVS::Manager::~Manager() noexcept {
+nvs::manager::~manager() noexcept {
     if (const esp_err_t err{nvs_flash_deinit()}; err != ESP_OK) {
         spdlog::error("Failed to de-initialize NVS with code {}, retrying", esp_err_to_name(err));
         if (const esp_err_t retry_err{nvs_flash_deinit()}; retry_err != ESP_OK) {

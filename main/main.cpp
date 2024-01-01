@@ -18,7 +18,7 @@ extern "C" void app_main(void) {
 
     // NVS Driver Initialization Block
     try {
-        NVS::Manager();
+        nvs::manager();
         // NOTE: Keep this disable until ReSharper is fixed
         // ReSharper disable once CppDFAUnreachableCode
     } catch (const chimera_exception::exception&ex) {

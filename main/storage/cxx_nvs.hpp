@@ -5,21 +5,21 @@
 #ifndef CXX_NVS_H
 #define CXX_NVS_H
 
-namespace NVS {
+namespace nvs {
     // NVS Class Wrapper over ESP-IDF C function calls
-    class Manager {
+    class manager {
     public:
-        Manager();
+        manager();
 
-        Manager(const Manager&other) = delete;
+        manager(const manager&other) = delete;
 
-        Manager(Manager&&other) = delete;
+        manager(manager&&other) = delete;
 
-        Manager& operator=(const Manager&other) = delete;
+        manager& operator=(const manager&other) = delete;
 
-        Manager& operator=(Manager&&other) = delete;
+        manager& operator=(manager&&other) = delete;
 
-        ~Manager() noexcept;
+        ~manager() noexcept;
     };
 }
 
