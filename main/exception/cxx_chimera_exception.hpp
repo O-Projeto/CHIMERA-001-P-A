@@ -5,6 +5,8 @@
 #ifndef CHIMERA_EXCEPTION_HPP
 #define CHIMERA_EXCEPTION_HPP
 
+#pragma once
+
 extern "C" {
 #include "esp_err.h"
 }
@@ -41,6 +43,12 @@ namespace chimera_exception {
         const char* esp_message;
         const char* chimera_reason;
     };
+
+    /**
+     * \brief CHIMERA formatted exception message.
+     * \param ex CHIMERA exception
+     */
+    void print_exception(const exception&ex) noexcept;
 }
 
 #endif //CHIMERA_EXCEPTION_HPP

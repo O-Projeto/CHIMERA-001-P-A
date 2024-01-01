@@ -6,8 +6,6 @@
 #include "exception/cxx_chimera_exception.hpp"
 #include "spdlog/spdlog.h"
 
-#include <iostream>
-
 // TODO:
 // - Design Telemetry Subcomponent.
 // - Design Clock Synchronization Subcomponent.
@@ -24,9 +22,6 @@ extern "C" void app_main(void) {
         // NOTE: Keep this disable until ReSharper is fixed
         // ReSharper disable once CppDFAUnreachableCode
     } catch (const chimera_exception::exception&ex) {
-        std::cout <<
-            "code:    [" << ex.code() << "]\n"
-            "what:    [" << ex.what() << "]\n"
-            "reason:  [" << ex.reason() << "]\n";
+        print_exception(ex);
     }
 }
