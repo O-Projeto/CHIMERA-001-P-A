@@ -22,14 +22,15 @@ NVS::Manager::Manager() {
         // Retry nvs_flash_init
         spdlog::debug("Attempting to erase NVS partition");
         if (const int erase{nvs_flash_erase()}; erase != ESP_OK) {
-            throw chimera_exception::exception(erase, esp_err_to_name(erase));
+            throw chimera_exception::exception(erase, esp_err_to_name(erase),
+                                               "Breach of NVS Flash Erase Invariant");
         }
         spdlog::debug("NVS partition has been erased");
         spdlog::debug("Attempting to re-initialize NVS after flashing NVS");
         err = nvs_flash_init();
     }
     if (err != ESP_OK) {
-        throw chimera_exception::exception(err, esp_err_to_name(err));
+        throw chimera_exception::exception(err, esp_err_to_name(err), "Breach of NVS Flash Invariant");
     }
     spdlog::debug("NVS Initialized");
 }

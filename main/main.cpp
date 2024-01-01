@@ -21,11 +21,12 @@ extern "C" void app_main(void) {
     // NVS Driver Initialization Block
     try {
         NVS::Manager();
-        // ReSharper thinking that this won't throw..
+        // NOTE: Keep this disable until ReSharper is fixed
         // ReSharper disable once CppDFAUnreachableCode
     } catch (const chimera_exception::exception&ex) {
         std::cout <<
             "code:    [" << ex.code() << "]\n"
-            "what:    [" << ex.what() << "]\n";
+            "what:    [" << ex.what() << "]\n"
+            "reason:  [" << ex.reason() << "]\n";
     }
 }
