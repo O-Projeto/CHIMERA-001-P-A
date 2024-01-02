@@ -18,9 +18,9 @@ namespace chimera_exception {
     public:
         /**
          * @param error ESP-IDF error code.
-         * @param message CHIMERA exception message.
+         * @param reason CHIMERA exception message.
          */
-        exception(esp_err_t error, const char* message);
+        exception(esp_err_t error, const char* reason);
 
         /**
          * @return The ESP-IDF error message extracted from esp_err_t.
@@ -33,17 +33,17 @@ namespace chimera_exception {
         esp_err_t code() const noexcept;
 
         /**
-        * \return The CHIMERA detailed message for the exception to be thrown.
+        * \return The CHIMERA detailed reason for the exception to be thrown.
         */
         const char* reason() const noexcept;
 
     private:
-        esp_err_t error{};
-        const char* message;
+        esp_err_t exception_error{};
+        const char* exception_reason;
     };
 
     /**
-     * \brief CHIMERA formatted exception message.
+     * \brief CHIMERA helper function for displaying a formatted exception message.
      * \param ex CHIMERA exception
      */
     void print_exception(const exception&ex) noexcept;

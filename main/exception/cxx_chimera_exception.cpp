@@ -6,26 +6,24 @@
 
 #include "exception/cxx_chimera_exception.hpp"
 
-chimera_exception::exception::exception(const esp_err_t error, const char* message)
-    : error{error}, message{message} {
+chimera_exception::exception::exception(const esp_err_t error, const char* reason)
+    : exception_error{error}, exception_reason{reason} {
 }
 
 const char* chimera_exception::exception::what() const noexcept {
-    return esp_err_to_name(error);
+    return esp_err_to_name(exception_error);
 }
 
 esp_err_t chimera_exception::exception::code() const noexcept {
-    return error;
+    return exception_error;
 }
 
 const char* chimera_exception::exception::reason() const noexcept {
-    return message;
+    return exception_reason;
 }
 
 
 void chimera_exception::print_exception(const exception&ex) noexcept {
-    using namespace std;
-
     std::cerr <<
             "code:     [" << ex.code() << "]\n"
             "what:     [" << ex.what() << "]\n"
