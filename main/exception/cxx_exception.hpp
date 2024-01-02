@@ -13,7 +13,7 @@ extern "C" {
 
 #include <exception>
 
-namespace chimera_exception {
+namespace chimera {
     class exception final : public std::exception {
     public:
         /**
