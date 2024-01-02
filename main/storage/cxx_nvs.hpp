@@ -5,7 +5,7 @@
 #ifndef CXX_NVS_H
 #define CXX_NVS_H
 
-namespace nvs {
+namespace chimera::nvs {
     // NVS Class Wrapper over ESP-IDF C function calls
     class manager {
     public:
@@ -22,5 +22,4 @@ namespace nvs {
         ~manager() noexcept;
     };
 }
-
 #endif //CXX_NVS_H

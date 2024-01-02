@@ -3,8 +3,8 @@ idf_component_register(
         "main.cpp"
         "storage/cxx_nvs.hpp"
         "storage/cxx_nvs.cpp"
-        "exception/cxx_chimera_exception.hpp"
-        "exception/cxx_chimera_exception.cpp"
+        "exception/cxx_exception.hpp"
+        "exception/cxx_exception.cpp"
         INCLUDE_DIRS ".")
 
 # Allow all compiler warnings to be displayed
