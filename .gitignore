@@ -39,3 +39,4 @@ esp-idf
 build
 cmake-build*
 .idea
+*.lock
