@@ -1,8 +1,6 @@
 //
 // Created by Braum on 23/12/23.
 //
-#include "esp_event_cxx.hpp"
-
 extern "C" {
 #include "esp_event.h"
 #include "esp_console.h"
@@ -10,6 +8,7 @@ extern "C" {
 
 #include <cstdio>
 
+#include "esp_event_cxx.hpp"
 #include "storage/cxx_nvs.hpp"
 #include "exception/cxx_exception.hpp"
 
@@ -50,7 +49,7 @@ extern "C" void app_main(void) {
     // Register servo command
     constexpr esp_console_cmd_t servo_command{
         .command = "servo",
-        .help = "Run the servo with required value.",
+        .help = "Run servo controller",
         .hint = nullptr,
         .func = &servo_function,
         .argtable = nullptr,
