@@ -9,7 +9,6 @@ extern "C" {
 }
 
 #include "exception/cxx_exception.hpp"
-#include "spdlog/spdlog.h"
 #include "cxx_nvs.hpp"
 
 chimera::nvs::manager::manager() {
@@ -27,9 +26,9 @@ chimera::nvs::manager::manager() {
 
 chimera::nvs::manager::~manager() noexcept {
     if (const esp_err_t err{nvs_flash_deinit()}; err != ESP_OK) {
-        spdlog::error("Failed to de-initialize NVS with code {}, retrying", esp_err_to_name(err));
+        fprintf(stderr, "Failed to de-initialize NVS with code %s, retrying", esp_err_to_name(err));
         if (const esp_err_t retry_err{nvs_flash_deinit()}; retry_err != ESP_OK) {
-            spdlog::error("Retry NVS initialization failed with code {}", esp_err_to_name(retry_err));
+            fprintf(stderr, "Retry NVS de-initialization failed with code %s, exiting", esp_err_to_name(retry_err));
         }
     }
 }

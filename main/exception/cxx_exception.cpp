@@ -23,6 +23,7 @@ chimera::exception::exception(const esp_err_t error, const char* reason)
 
 
 void chimera::print_exception(const exception&ex) noexcept {
+
     fprintf(stderr,
             "code:   [%x]\n"
             "what:   [%s]\n"
