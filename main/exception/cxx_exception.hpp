@@ -20,22 +20,22 @@ namespace chimera {
          * @param error ESP-IDF error code.
          * @param reason CHIMERA exception message.
          */
-        exception(esp_err_t error, const char* reason);
+        explicit exception(esp_err_t error, const char* reason);
 
         /**
          * @return The ESP-IDF error message extracted from esp_err_t.
          */
-        const char* what() const noexcept override;
+        [[nodiscard]] const char* what() const noexcept override;
 
         /**
          * \return The ESP-IDF error code.
          */
-        esp_err_t code() const noexcept;
+        [[nodiscard]] esp_err_t code() const noexcept;
 
         /**
         * \return The CHIMERA detailed reason for the exception to be thrown.
         */
-        const char* reason() const noexcept;
+        [[nodiscard]] const char* reason() const noexcept;
 
     private:
         esp_err_t exception_error{};
