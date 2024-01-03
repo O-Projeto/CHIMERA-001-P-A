@@ -12,6 +12,12 @@ extern "C" {
 #include "exception/cxx_exception.hpp"
 #include "spdlog/spdlog.h"
 
+/*
+ * This is the command entrypoint function, change the code below to make any modifications.
+ * NOTE: The console component requires the function signature to be int (int argc, char** argv),
+ * without this signature the console will be unable to register the function, and the code won't
+ * compile.
+ */
 int servo_function(int argc, char** argv) {
     auto value = std::stoi(argv[1]);
     value++;
