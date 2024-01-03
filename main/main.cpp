@@ -8,6 +8,8 @@ extern "C" {
 #include "esp_console.h"
 }
 
+#include <cstdio>
+
 #include "storage/cxx_nvs.hpp"
 #include "exception/cxx_exception.hpp"
 #include "spdlog/spdlog.h"
@@ -22,7 +24,7 @@ int servo_function(int argc, char** argv) {
     auto value = std::stoi(argv[1]);
     value++;
 
-    std::cout << value << "\n";
+    fprintf(stdout, "%d\n", value);
     return 0;
 }
 

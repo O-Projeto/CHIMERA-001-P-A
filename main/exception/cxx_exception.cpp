@@ -2,8 +2,7 @@
 // Created by Braum on 31/12/23.
 //
 
-#include <iostream>
-
+#include <cstdio>
 #include "exception/cxx_exception.hpp"
 
 chimera::exception::exception(const esp_err_t error, const char* reason)
@@ -24,8 +23,11 @@ chimera::exception::exception(const esp_err_t error, const char* reason)
 
 
 void chimera::print_exception(const exception&ex) noexcept {
-    std::cerr <<
-            "code:     [" << ex.code() << "]\n"
-            "what:     [" << ex.what() << "]\n"
-            "reason:   [" << ex.reason() << "]\n";
+    fprintf(stderr,
+            "code:   [%x]\n"
+            "what:   [%s]\n"
+            "reason: [%s]\n",
+            ex.code(),
+            ex.what(),
+            ex.reason());
 }
