@@ -5,21 +5,21 @@
 #ifndef CXX_NVS_H
 #define CXX_NVS_H
 
-namespace chimera::nvs {
+namespace chimera {
     // NVS Class Wrapper over ESP-IDF C function calls
-    class manager {
+    class nvs {
     public:
-        manager();
+        explicit nvs();
 
-        manager(const manager&other) = delete;
+        nvs(const nvs&other) = delete;
 
-        manager(manager&&other) = delete;
+        nvs(nvs&&other) = delete;
 
-        manager& operator=(const manager&other) = delete;
+        nvs& operator=(const nvs&other) = delete;
 
-        manager& operator=(manager&&other) = delete;
+        nvs& operator=(nvs&&other) = delete;
 
-        ~manager() noexcept;
+        ~nvs() noexcept;
     };
 }
 #endif //CXX_NVS_H
