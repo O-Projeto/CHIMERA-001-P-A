@@ -36,7 +36,7 @@ int servo_function(int argc, char** argv) {
 extern "C" void app_main(void) {
     // NVS Driver Initialization Block
     try {
-        chimera::nvs::manager();
+        chimera::nvs();
     }
     // NOTE: Keep this disabled until ReSharper is fixed
     // ReSharper disable once CppDFAUnreachableCode
