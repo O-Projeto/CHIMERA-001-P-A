@@ -40,3 +40,6 @@ build
 cmake-build*
 .idea
 *.lock
+
+# Visual Studio Code specific files
+.vscode
