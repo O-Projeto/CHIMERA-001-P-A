@@ -7,6 +7,7 @@ extern "C" {
 }
 
 #include <cstdio>
+#include <memory>
 
 #include "esp_event_cxx.hpp"
 #include "storage/cxx_nvs.hpp"
@@ -29,7 +30,6 @@ int servo_function(int argc, char** argv) {
 // Main task called by FreeRTOS Scheduler after Application Startup
 // https://docs.espressif.com/projects/esp-idf/en/v5.1.2/esp32/api-guides/startup.html
 extern "C" void app_main(void) {
-
     // NVS Driver Initialization Block
     try {
         chimera::nvs::manager();
@@ -40,11 +40,14 @@ extern "C" void app_main(void) {
         print_exception(ex);
     }
 
-    esp_console_repl_t* repl{nullptr};
+    const std::shared_ptr<esp_console_repl_t *> repl{new esp_console_repl_t *};
+
     constexpr esp_console_repl_config_t repl_config = ESP_CONSOLE_REPL_CONFIG_DEFAULT();
 
-    /* Register commands */
-    esp_console_register_help_command();
+    //Register help command
+    if (const esp_err_t err{esp_console_register_help_command()}; err != ESP_OK) {
+        fprintf(stderr, "Unable to register help command in the console");
+    }
 
     // Register servo command
     constexpr esp_console_cmd_t servo_command{
@@ -54,13 +57,18 @@ extern "C" void app_main(void) {
         .func = &servo_function,
         .argtable = nullptr,
     };
-    esp_console_cmd_register(&servo_command);
+
+    if (const esp_err_t err{esp_console_cmd_register(&servo_command)}; err != ESP_OK) {
+        fprintf(stderr, "Unable to register servo command in the console");
+    }
 
     constexpr esp_console_dev_uart_config_t hw_config = ESP_CONSOLE_DEV_UART_CONFIG_DEFAULT();
 
-    if (const esp_err_t err{esp_console_new_repl_uart(&hw_config, &repl_config, &repl)}; err != ESP_OK) {
-        fprintf(stderr,"Unable to stablish REPL environment");
+    if (const esp_err_t err{esp_console_new_repl_uart(&hw_config, &repl_config, repl.get())}; err != ESP_OK) {
+        fprintf(stderr, "Unable to establish REPL environment");
     }
 
-    esp_console_start_repl(repl);
+    if (const esp_err_t err{esp_console_start_repl(*repl)}; err != ESP_OK) {
+        fprintf(stderr, "Unable to start REPL environment");
+    }
 }
