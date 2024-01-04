@@ -20,12 +20,12 @@ extern "C" {
  * compile.
  */
 int servo_function(int argc, char** argv) {
-
     if (argv[1]) {
         auto value = std::stoi(argv[1]);
         value++;
         fprintf(stdout, "%d\n", value);
-    } else {
+    }
+    else {
         fprintf(stdout, "missing argument, command won't run\n");
     }
     return 0;
@@ -42,11 +42,13 @@ extern "C" void app_main(void) {
     // ReSharper disable once CppDFAUnreachableCode
     catch (const chimera::exception&ex) {
         print_exception(ex);
+        abort();
     }
 
     const std::shared_ptr<esp_console_repl_t *> repl{new esp_console_repl_t *};
 
-    constexpr esp_console_repl_config_t repl_config = ESP_CONSOLE_REPL_CONFIG_DEFAULT();
+    esp_console_repl_config_t repl_config = ESP_CONSOLE_REPL_CONFIG_DEFAULT();
+    repl_config.prompt = "CHIMERA-001-P-A >";
 
     //Register help command
     if (const esp_err_t err{esp_console_register_help_command()}; err != ESP_OK) {
