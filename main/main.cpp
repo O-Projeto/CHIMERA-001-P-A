@@ -29,8 +29,6 @@ extern "C" void app_main(void) {
         chimera::nvs subsystem_nvs{};
         chimera::console subsystem_console{};
     }
-    // NOTE: Keep this disabled until ReSharper is fixed
-    // ReSharper disable once CppDFAUnreachableCode
     catch (const chimera::exception&ex) {
         print_exception(ex);
         abort();
