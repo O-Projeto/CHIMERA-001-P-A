@@ -36,10 +36,16 @@ extern "C" void app_main(void) {
         abort();
     }
 
-    // Register all commands to be used in the console
-    for (const std::array<const esp_console_cmd_t, 1> command_list{
-             chimera::command::servo_command()
-         }; const auto&command: command_list) {
-        chimera::console::register_command(command);
+    // CHIMERA command registration
+    try {
+        for (const std::array<const esp_console_cmd_t, 1> command_list{
+                 chimera::command::servo_command()
+             }; const auto&command: command_list) {
+            chimera::console::register_command(command);
+        }
+    }
+    catch (const chimera::exception&ex) {
+        print_exception(ex);
+        abort();
     }
 }
