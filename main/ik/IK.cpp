@@ -26,8 +26,9 @@
  * 
 *******************************************************/
 
-#include <math.h>
+#include <cmath>
 #include <vector>
+#include <array>
 
 class IK
 {
@@ -71,30 +72,30 @@ private:
     }
     
 public:
-    std::vector<float> getAngles(float position[3], float L0, float L1){
+    std::array<float, 3> getAngles(const std::array<float, 3>& position, const float& L0, const float& L1){
 
         // split position vector
-        float x = position[0];
-        float y = position[1];
-        float z = position[2];
+        const float x = position[0];
+        const float y = position[1];
+        const float z = position[2];
 
         // ----------------------------------------
         // calculate angles
         // ----------------------------------------
 
-        float theta0 = getTheta0(x, y);
+        const float theta0 = getTheta0(x, y);
         
-        float P = getP(x, z);
-        float alpha = getAlpha(L0, L1, P);
-        float theta1 = getTheta1(x, z, alpha);
+        const float P = getP(x, z);
+        const float alpha = getAlpha(L0, L1, P);
+        const float theta1 = getTheta1(x, z, alpha);
 
-        float beta = getBeta(L0, L1, P);
-        float theta2 = getTheta2(beta);
+        const float beta = getBeta(L0, L1, P);
+        const float theta2 = getTheta2(beta);
 
         // ----------------------------------------
 
         // mount angle vector
-        std::vector<float> angles{theta0, theta1, theta2};
+        std::array<auto, 3> angles{theta0, theta1, theta2};
 
         return angles;
 
