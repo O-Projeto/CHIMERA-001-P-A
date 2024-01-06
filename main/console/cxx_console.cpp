@@ -4,6 +4,7 @@
 
 #include "exception/cxx_exception.hpp"
 #include "cxx_console.hpp"
+#include <string>
 
 chimera::console::console() : console_ptr{new esp_console_repl_t *} {
     constexpr esp_console_dev_uart_config_t hw_config = ESP_CONSOLE_DEV_UART_CONFIG_DEFAULT();
@@ -21,6 +22,8 @@ chimera::console::console() : console_ptr{new esp_console_repl_t *} {
 
 void chimera::console::register_command(const esp_console_cmd_t&command) {
     if (const esp_err_t err{esp_console_cmd_register(&command)}; err != ESP_OK) {
-        throw exception(err, "Breach of REPL Register Invariant");
+        std::string exception_message{"Breach of REPL Register Invariant Command: "};
+        exception_message += std::string(command.command);
+        throw exception(err, exception_message.c_str());
     }
 }

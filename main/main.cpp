@@ -22,6 +22,7 @@ extern "C" {
 extern "C" void app_main(void) {
     /*
      * TODO: Implement Console Destructor
+     * TODO: Implement Argument Parser
     */
 
     // CHIMERA subsystem initialization
