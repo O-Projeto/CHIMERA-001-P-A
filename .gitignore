@@ -41,5 +41,5 @@ cmake-build*
 .idea
 *.lock
 
-# vscode config files
-.vscode 
+# Visual Studio Code specific files
+.vscode

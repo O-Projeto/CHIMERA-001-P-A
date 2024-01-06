@@ -20,10 +20,14 @@ extern "C" {
  * compile.
  */
 int servo_function(int argc, char** argv) {
-    auto value = std::stoi(argv[1]);
-    value++;
 
-    fprintf(stdout, "%d\n", value);
+    if (argv[1]) {
+        auto value = std::stoi(argv[1]);
+        value++;
+        fprintf(stdout, "%d\n", value);
+    } else {
+        fprintf(stdout, "missing argument, command won't run\n");
+    }
     return 0;
 }
 
