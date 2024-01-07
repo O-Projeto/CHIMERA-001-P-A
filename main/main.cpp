@@ -23,6 +23,8 @@ extern "C" void app_main(void) {
     /*
      * TODO: Implement Console Destructor
      * TODO: Implement Argument Parser
+     * TODO: Create servo_controller command with 4 arguments: x, y, z, leg_idx
+     *
     */
 
     // CHIMERA subsystem initialization
