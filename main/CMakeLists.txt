@@ -5,6 +5,8 @@ idf_component_register(
         "storage/cxx_nvs.cpp"
         "exception/cxx_exception.hpp"
         "exception/cxx_exception.cpp"
+        "ik/IK.cpp"
+        "ik/servo_drive.cpp"
         "console/cxx_console.hpp"
         "console/cxx_console.cpp"
         "command/cxx_command.hpp"
