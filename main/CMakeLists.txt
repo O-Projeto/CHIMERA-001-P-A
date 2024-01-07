@@ -7,6 +7,10 @@ idf_component_register(
         "exception/cxx_exception.cpp"
         "ik/IK.cpp"
         "ik/servo_drive.cpp"
+        "console/cxx_console.hpp"
+        "console/cxx_console.cpp"
+        "command/cxx_command.hpp"
+        "command/cxx_command.cpp"
         INCLUDE_DIRS ".")
 
 # Allow all compiler warnings to be displayed
