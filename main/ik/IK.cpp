@@ -95,7 +95,7 @@ public:
         // ----------------------------------------
 
         // mount angle vector
-        std::array<auto, 3> angles{theta0, theta1, theta2};
+        const std::array<float, 3> angles{{theta0, theta1, theta2}};
 
         return angles;
 
