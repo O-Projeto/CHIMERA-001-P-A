@@ -10,6 +10,7 @@ extern "C" {
 
 #include <cstdio>
 #include <memory>
+#include <algorithm>
 
 #include "command/cxx_command.hpp"
 #include "console/cxx_console.hpp"
@@ -39,11 +40,12 @@ extern "C" void app_main(void) {
 
     // CHIMERA command registration
     try {
-        for (const std::array<const esp_console_cmd_t, 1> command_list{
-                 chimera::command::servo_command()
-             }; const auto&command: command_list) {
+        const std::array<const esp_console_cmd_t, 1> command_list{
+            chimera::command::servo_command()
+        };
+        std::ranges::for_each(command_list, [&](const esp_console_cmd_t&command) {
             chimera::console::register_command(command);
-        }
+        });
     }
     catch (const chimera::exception&ex) {
         print_exception(ex);
