@@ -19,13 +19,19 @@ private:
 
     ik ik_servo;
     servo_drive drive;
-
+    float link_0_length, link_1_length;
 
 
     
 public:
 
-    servo_controller(const int32_t gpio_servo);
+    servo_controller(const int32_t gpio_servo, const float &_link_0_length, const float &_link_1_length) 
+    : drive(gpio_servo)
+    {
+
+        link_0_length = _link_0_length;
+        link_1_length = _link_1_length;
+    }
     void move(std::array<float, 3>& position);
    
 };
