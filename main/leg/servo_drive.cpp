@@ -44,8 +44,10 @@ static inline uint32_t example_angle_to_compare_2(int angle)
     return (angle - SERVO_MIN_DEGREE) * (SERVO_MAX_PULSEWIDTH_US - SERVO_MIN_PULSEWIDTH_US) / (SERVO_MAX_DEGREE - SERVO_MIN_DEGREE) + SERVO_MIN_PULSEWIDTH_US;
 }
 
-servo_drive::servo_drive(const int32_t gpio_servo)
+servo_drive::servo_drive(const int32_t _gpio_servo)
 {
+
+    gpio_servo = gpio_servo;
     
     if(debug) ESP_LOGI(TAG, "Create timer and operator");
     timer_config.group_id = 0;
@@ -113,6 +115,8 @@ void servo_drive::Move(int angle){
     ESP_ERROR_CHECK(mcpwm_comparator_set_compare_value(comparator, example_angle_to_compare_2(angle)));
     
 }
+
+int32_t servo_drive::getGpio(){ return gpio_servo; }
 
 
 

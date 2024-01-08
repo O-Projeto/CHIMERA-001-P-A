@@ -15,7 +15,9 @@ extern "C" {
 class servo_drive
 {
 private:
-    /* data */
+
+    int32_t gpio_servo;
+
 public:
 
     mcpwm_timer_handle_t timer; // The time base of the final PWM signal. It also determines the event timing of other submodules
@@ -27,8 +29,9 @@ public:
     mcpwm_gen_handle_t generator; // can generate a pair of PWM waves complementary or independently 
     mcpwm_generator_config_t generator_config;
 
-    servo_drive(const int32_t gpio_servo);
+    servo_drive(const int32_t _gpio_servo);
     ~servo_drive();
+    int32_t getGpio();
 
     void Move(int angle);
 };
