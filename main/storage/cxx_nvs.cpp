@@ -11,7 +11,7 @@ extern "C" {
 #include "exception/cxx_exception.hpp"
 #include "cxx_nvs.hpp"
 
-chimera::nvs::manager::manager() {
+chimera::nvs::nvs() {
     esp_err_t err{nvs_flash_init()};
     if (err == ESP_ERR_NVS_NO_FREE_PAGES || err == ESP_ERR_NVS_NEW_VERSION_FOUND) {
         if (const esp_err_t erase{nvs_flash_erase()}; erase != ESP_OK) {
@@ -24,7 +24,7 @@ chimera::nvs::manager::manager() {
     }
 }
 
-chimera::nvs::manager::~manager() noexcept {
+chimera::nvs::~nvs() noexcept {
     if (const esp_err_t err{nvs_flash_deinit()}; err != ESP_OK) {
         fprintf(stderr, "Failed to de-initialize NVS with code %s, retrying", esp_err_to_name(err));
         if (const esp_err_t retry_err{nvs_flash_deinit()}; retry_err != ESP_OK) {
