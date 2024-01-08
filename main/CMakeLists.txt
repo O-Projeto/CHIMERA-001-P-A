@@ -5,6 +5,11 @@ idf_component_register(
         "storage/cxx_nvs.cpp"
         "exception/cxx_exception.hpp"
         "exception/cxx_exception.cpp"
+        "servo_controller/ik.hpp"
+        "servo_controller/ik.cpp"
+        "servo_controller/servo_drive.hpp"
+        "servo_controller/servo_drive.cpp"
+        "servo_controller/servo_controller.cpp"
         INCLUDE_DIRS ".")
 
 # Allow all compiler warnings to be displayed
