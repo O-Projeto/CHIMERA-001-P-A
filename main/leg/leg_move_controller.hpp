@@ -13,7 +13,7 @@
 #include "leg/servo_drive.hpp"
 
 
-class servo_controller
+class leg_move_controller
 {
 private:
 
@@ -25,7 +25,7 @@ private:
     
 public:
 
-    servo_controller(const int32_t gpio_servo, const float &_link_0_length, const float &_link_1_length) 
+    leg_move_controller(const int32_t gpio_servo, const float &_link_0_length, const float &_link_1_length) 
     : drive(gpio_servo)
     {
 
