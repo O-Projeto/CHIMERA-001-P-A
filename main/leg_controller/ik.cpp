@@ -1,3 +1,6 @@
+// 
+// Create by Ale on 1/8/23
+// 
 /*******************************************************
  * Spider IK
  * 
@@ -26,15 +29,17 @@
  * 
 *******************************************************/
 
-#include <math.h>
+#include <cmath>
 #include <vector>
-#include "servo_controller/ik.hpp"
+#include <array>
+#include "leg_controller/ik.hpp"
 
-float IK::getP(float x, float z){
+
+float ik::getP(float x, float z){
     float p = sqrt(x*x + z*z);
     return p;
 }
-float IK::getAlpha(float L0, float L1, float P){
+float ik::getAlpha(float L0, float L1, float P){
 
     float a = P*P + L0*L0 - L1*L1;
     float b = 2*P*L0;
@@ -42,7 +47,7 @@ float IK::getAlpha(float L0, float L1, float P){
     return alpha;
     
 }
-float IK::getBeta(float L0, float L1, float P){
+float ik::getBeta(float L0, float L1, float P){
 
     float a = L0*L0 + L1*L1 - P*P;
     float b = 2*L0*L1;
@@ -50,47 +55,47 @@ float IK::getBeta(float L0, float L1, float P){
     return beta;
     
 }
-float IK::getTheta0(float x, float y){
+float ik::getTheta0(float x, float y){
     float theta0 = atan(y/x);
     return theta0;
 }
-float IK::getTheta1(float x, float z, float alpha){
+float ik::getTheta1(float x, float z, float alpha){
     
     float gama = atan(z/x);
     float theta1 = gama + alpha;
     return theta1;
 
 }
-float IK::getTheta2(float beta){
+float ik::getTheta2(float beta){
 
     float theta2 = 2*M_PI - beta;
     return theta2;
 
 }
-std::vector<float> IK::getAngles(float position[3], float L0, float L1){
+std::array<float, 3> ik::getAngles(const std::array<float, 3>& position, const float& L0, const float& L1){
 
     // split position vector
-    float x = position[0];
-    float y = position[1];
-    float z = position[2];
+    const float x = position[0];
+    const float y = position[1];
+    const float z = position[2];
 
     // ----------------------------------------
     // calculate angles
     // ----------------------------------------
 
-    float theta0 = getTheta0(x, y);
+    const float theta0 = getTheta0(x, y);
     
-    float P = getP(x, z);
-    float alpha = getAlpha(L0, L1, P);
-    float theta1 = getTheta1(x, z, alpha);
+    const float P = getP(x, z);
+    const float alpha = getAlpha(L0, L1, P);
+    const float theta1 = getTheta1(x, z, alpha);
 
-    float beta = getBeta(L0, L1, P);
-    float theta2 = getTheta2(beta);
+    const float beta = getBeta(L0, L1, P);
+    const float theta2 = getTheta2(beta);
 
     // ----------------------------------------
 
     // mount angle vector
-    std::vector<float> angles{theta0, theta1, theta2};
+    const std::array<float, 3> angles{{theta0, theta1, theta2}};
 
     return angles;
 

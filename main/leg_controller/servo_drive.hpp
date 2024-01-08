@@ -27,7 +27,7 @@ public:
     mcpwm_gen_handle_t generator; // can generate a pair of PWM waves complementary or independently 
     mcpwm_generator_config_t generator_config;
 
-    servo_drive(int32_t gpio_servo);
+    servo_drive(const int32_t gpio_servo);
     ~servo_drive();
 
     void Move(int angle);

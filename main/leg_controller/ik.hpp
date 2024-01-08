@@ -36,8 +36,10 @@
 
 #include <math.h>
 #include <vector>
+#include <array>
+using namespace std;
 
-class IK
+class ik
 {
 private:
     float getP(float x, float z);
@@ -48,7 +50,8 @@ private:
     float getTheta2(float beta);
     
 public:
-    std::vector<float> getAngles(float position[3], float L0, float L1);
+    std::array<float, 3> getAngles(const std::array<float, 3>& position, const float& L0, const float& L1);
+
 };
 
 #endif

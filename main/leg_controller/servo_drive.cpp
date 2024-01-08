@@ -1,3 +1,7 @@
+//
+//  Create by Ale - 1/8/23
+//
+
 // from https://github.com/espressif/esp-idf/blob/master/examples/peripherals/mcpwm/mcpwm_servo_control/main/mcpwm_servo_control_example_main.c 
 // ref: https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/mcpwm.html
 
@@ -17,7 +21,7 @@ extern "C" {
 }
 
 #include <iostream>
-#include "servo_controller/servo_drive.hpp"
+#include "leg_controller/servo_drive.hpp"
 using namespace std;
 
 
@@ -40,7 +44,7 @@ static inline uint32_t example_angle_to_compare_2(int angle)
     return (angle - SERVO_MIN_DEGREE) * (SERVO_MAX_PULSEWIDTH_US - SERVO_MIN_PULSEWIDTH_US) / (SERVO_MAX_DEGREE - SERVO_MIN_DEGREE) + SERVO_MIN_PULSEWIDTH_US;
 }
 
-servo_drive::servo_drive(int32_t gpio_servo)
+servo_drive::servo_drive(const int32_t gpio_servo)
 {
     
     if(debug) ESP_LOGI(TAG, "Create timer and operator");
