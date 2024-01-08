@@ -9,8 +9,8 @@
 
 #include <iostream>
 #include <array>
-#include "leg_controller/ik.hpp"
-#include "leg_controller/servo_drive.hpp"
+#include "leg/ik.hpp"
+#include "leg/servo_drive.hpp"
 
 
 class servo_controller

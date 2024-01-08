@@ -21,7 +21,7 @@ extern "C" {
 }
 
 #include <iostream>
-#include "leg_controller/servo_drive.hpp"
+#include "leg/servo_drive.hpp"
 using namespace std;
 
 

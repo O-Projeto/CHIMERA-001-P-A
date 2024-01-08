@@ -32,7 +32,7 @@
 #include <cmath>
 #include <vector>
 #include <array>
-#include "leg_controller/ik.hpp"
+#include "leg/ik.hpp"
 
 
 float ik::getP(float x, float z){

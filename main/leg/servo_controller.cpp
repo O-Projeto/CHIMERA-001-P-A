@@ -2,9 +2,9 @@
 //  Create by Ale - 1/8/23
 //
 
-#include "leg_controller/servo_controller.hpp"
-#include "leg_controller/ik.hpp"
-#include "leg_controller/servo_drive.hpp"
+#include "leg/servo_controller.hpp"
+#include "leg/ik.hpp"
+#include "leg/servo_drive.hpp"
 #include <array>
 
 
