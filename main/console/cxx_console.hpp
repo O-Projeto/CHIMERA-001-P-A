@@ -27,7 +27,6 @@ namespace chimera {
         static void register_command(const esp_console_cmd_t& command);
 
     private:
-        std::unique_ptr<esp_console_repl_t *> console_ptr;
         const esp_console_repl_config_t console_config{
             32,
             nullptr,
@@ -36,6 +35,7 @@ namespace chimera {
             "CHIMERA-001-P-A >",
             0
         };
+        std::unique_ptr<esp_console_repl_t *> console_ptr;
     };
 }
 
