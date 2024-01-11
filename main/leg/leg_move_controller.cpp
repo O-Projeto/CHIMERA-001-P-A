@@ -23,7 +23,7 @@ void leg_move_controller::move_servo_0(const float &angle){ move_servo_x(drive_0
 void leg_move_controller::move_servo_1(const float &angle){ move_servo_x(drive_1, angle);}
 void leg_move_controller::move_servo_2(const float &angle){ move_servo_x(drive_2, angle);}
 
-explicit void leg_move_controller::move_servo_x(servo_drive &_drive, const float &_angle){
+void leg_move_controller::move_servo_x(servo_drive &_drive, const float &_angle){
 
     int angle_int = (int) _angle; 
     _drive.Move(angle_int);
