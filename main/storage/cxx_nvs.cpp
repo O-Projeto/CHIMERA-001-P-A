@@ -4,12 +4,12 @@
 
 extern "C" {
 #include "esp_err.h"
-#include "nvs_flash.h"
 #include "nvs.h"
+#include "nvs_flash.h"
 }
 
-#include "exception/cxx_exception.hpp"
 #include "cxx_nvs.hpp"
+#include "exception/cxx_exception.hpp"
 
 chimera::nvs::nvs() {
     esp_err_t err{nvs_flash_init()};

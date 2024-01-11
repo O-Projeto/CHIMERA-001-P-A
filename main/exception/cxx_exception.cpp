@@ -1,8 +1,8 @@
 //
 // Created by Braum on 31/12/23.
 //
-
 #include <cstdio>
+
 #include "exception/cxx_exception.hpp"
 
 chimera::exception::exception(const esp_err_t error, const char* reason)

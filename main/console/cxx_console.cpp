@@ -1,10 +1,10 @@
 //
 // Created by Braum on 04/01/24.
 //
-
-#include "exception/cxx_exception.hpp"
-#include "cxx_console.hpp"
 #include <string>
+
+#include "cxx_console.hpp"
+#include "exception/cxx_exception.hpp"
 
 chimera::console::console() : console_ptr{new esp_console_repl_t *} {
     constexpr esp_console_dev_uart_config_t hw_config = ESP_CONSOLE_DEV_UART_CONFIG_DEFAULT();

@@ -2,21 +2,14 @@
 // Created by Braum on 23/12/23.
 //
 
-
-extern "C" {
-#include "esp_event.h"
-#include "esp_console.h"
-}
-
-#include <cstdio>
-#include <memory>
 #include <algorithm>
+#include <array>
+#include <cstdio>
 
 #include "command/cxx_command.hpp"
 #include "console/cxx_console.hpp"
-#include "esp_event_cxx.hpp"
-#include "storage/cxx_nvs.hpp"
 #include "exception/cxx_exception.hpp"
+#include "storage/cxx_nvs.hpp"
 
 // Main task called by FreeRTOS Scheduler after Application Startup
 // https://docs.espressif.com/projects/esp-idf/en/v5.1.2/esp32/api-guides/startup.html
