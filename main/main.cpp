@@ -1,7 +1,7 @@
 //
 // Created by Braum on 23/12/23.
-
 //
+
 
 extern "C" {
 #include "esp_event.h"
@@ -28,22 +28,15 @@ extern "C" void app_main(void) {
      *
     */
 
-    // CHIMERA subsystem initialization
     try {
-        chimera::nvs subsystem_nvs{};
-        chimera::console subsystem_console{};
-    }
-    catch (const chimera::exception&ex) {
-        print_exception(ex);
-        abort();
-    }
+        const chimera::nvs subsystem_nvs{};
+        const chimera::console subsystem_console{};
 
-    // CHIMERA command registration
-    try {
         const std::array<const esp_console_cmd_t, 1> command_list{
             chimera::command::servo_command()
         };
-        std::ranges::for_each(command_list, [&](const esp_console_cmd_t&command) {
+
+        std::ranges::for_each(command_list, [](const esp_console_cmd_t&command) {
             chimera::console::register_command(command);
         });
     }
